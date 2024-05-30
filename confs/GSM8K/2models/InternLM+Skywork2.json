@@ -1,0 +1,58 @@
+{
+  "model_path": {
+    "main_model_path": "/data/username/ModelsHub/internlm-20b",
+    "assist_model1_path": "/data/username/ModelsHub/Skywork/Skywork-13B-base"
+  },
+  "probability_transfer_matrix_path": {
+    "main_model_path": "/data/username/Experiments/LLM_ensemble/probability_transfer_matrix/internlm-20b_Skywork-13B-base/internlm-20b.pth",
+    "assist_model1_path": "/data/username/Experiments/LLM_ensemble/probability_transfer_matrix/internlm-20b_Skywork-13B-base/Skywork-13B-base.pth"
+  },
+  "file_path": {
+    "dev_file_path": "/data/home/username/Experiments/LLM_ensemble/Datasets/GSM/data/train_sample300_seed42.cleand.jsonl",
+    "test_file_path": "/data/home/username/Experiments/LLM_ensemble/Datasets/GSM/data/test_split4/test.cleand.jsonl_part2.jsonl",
+    "demon_file_path": "/data/home/username/Experiments/LLM_ensemble/Datasets/GSM/data/demon_4.jsonl"
+  },
+  "prompt_template": {
+    "main_model_system_template": "<s>{}",
+    "assist_model1_system_template": "<s>{}",
+    "instruction": "",
+    "instruction_parameter": {
+      "key": [
+        "question"
+      ],
+      "template": "Question: {}\nLet's think step by step\nAnswer:"
+    },
+    "demon_parameter": {
+      "key": [
+        "question",
+        "answer"
+      ],
+      "template": "Question: {}\nLet's think step by step\nAnswer:{}\n"
+    }
+  },
+  "run_parameter": {
+    "device": "cuda:0",
+    "run_mode": "dev",
+    "start_index": 0,
+    "end_index": 1600,
+    "max_new_tokens": 512,
+    "result_save_dir": "./",
+    "anchor_point_count": 16000,
+    "learning_epochs_nums": 5,
+    "learning_rate": 0.5
+  },
+  "result_process_parameter": {
+    "early_stop_string_list": [
+      "\n\n"
+    ],
+    "split_key_before": [
+      "The answer is"
+    ],
+    "split_key_behind": [
+      "\n",
+      "</s>",
+      "<unk>"
+    ]
+  }
+}
+

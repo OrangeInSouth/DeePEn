@@ -1,0 +1,53 @@
+{
+  "model_path": {
+    "main_model_path": "/data/username/ModelsHub/internlm-20b"
+  },
+  "probability_transfer_matrix_path": {
+    "main_model_path": "/data/username/Experiments/LLM_ensemble/probability_transfer_matrix/internlm-20b_Skywork-13B-base_tigerbot-13b-base-v2_Mistral-7B-v0.1/internlm-20b.pth",
+    "assist_model1_path": "/data/username/Experiments/LLM_ensemble/probability_transfer_matrix/internlm-20b_Skywork-13B-base_tigerbot-13b-base-v2_Mistral-7B-v0.1/Skywork-13B-base.pth",
+    "assist_model2_path": "/data/username/Experiments/LLM_ensemble/probability_transfer_matrix/internlm-20b_Skywork-13B-base_tigerbot-13b-base-v2_Mistral-7B-v0.1/tigerbot-13b-base-v2.pth",
+    "assist_model3_path": "/data/username/Experiments/LLM_ensemble/probability_transfer_matrix/internlm-20b_Skywork-13B-base_tigerbot-13b-base-v2_Mistral-7B-v0.1/Mistral-7B-v0.1.pth"
+  },
+  "file_path": {
+    "dev_file_path": "/data/home/username/Experiments/LLM_ensemble/Datasets/GSM/data/train_sample300_seed42.cleand.jsonl",
+    "test_file_path": "/data/home/username/Experiments/LLM_ensemble/Datasets/GSM/data/test.cleand.jsonl",
+    "demon_file_path": "/data/home/username/Experiments/LLM_ensemble/Datasets/GSM/data/demon_4.jsonl"
+  },
+  "prompt_template": {
+    "main_model_system_template": "<s>{}",
+    "assist_model1_system_template": "<s>{}",
+    "assist_model2_system_template": "<s>{}",
+    "assist_model3_system_template": "<s>{}",
+    "instruction": "",
+    "instruction_parameter": {
+      "key": [
+        "question"
+      ],
+      "template": "Question: {}\nLet's think step by step\nAnswer:"
+    },
+    "demon_parameter": {
+      "key": [
+        "question",
+        "answer"
+      ],
+      "template": "Question: {}\nLet's think step by step\nAnswer:{}\n"
+    }
+  },
+  "run_parameter": {
+    "max_new_tokens": 512
+  },
+  "result_process_parameter": {
+    "early_stop_string_list": [
+      "\n\n"
+    ],
+    "split_key_before": [
+      "The answer is"
+    ],
+    "split_key_behind": [
+      "\n",
+      "</s>",
+      "<unk>"
+    ]
+  }
+}
+

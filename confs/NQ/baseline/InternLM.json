@@ -1,0 +1,49 @@
+{
+  "model_path": {
+    "main_model_path": "/data/username/ModelsHub/internlm-20b"
+  },
+  "probability_transfer_matrix_path": {
+    "main_model_path": "/data/home/username/Experiments/LLM_ensemble/probability_transfer_matrix/Llama-2-70b-Mixtral-8x7B/Llama-2-70b.pth",
+    "assist_model1_path": "/data/home/username/Experiments/LLM_ensemble/probability_transfer_matrix/Llama-2-70b-Mixtral-8x7B/Mixtral-8x7B.pth"
+  },
+  "file_path": {
+    "dev_file_path": "/data/home/username/Experiments/LLM_ensemble/Datasets/NaturalQuestions/dev/v1.0-simplified_simplified-nq-train.simpled_dev_100000_sample1600_seed42.jsonl",
+    "test_file_path": "/data/home/username/Experiments/LLM_ensemble/Datasets/NaturalQuestions/test/natural-questions.jsonl",
+    "demon_file_path": "/data/home/username/Experiments/LLM_ensemble/Datasets/NaturalQuestions/dev/v1.0-simplified_simplified-nq-train.simpled_few_shot_doman_6926_sample5_seed43.jsonl"
+  },
+  "prompt_template": {
+    "main_model_system_template": "<s>{}",
+    "assist_model1_system_template": "<s>{}",
+    "instruction": "Answer this questions:\n",
+    "instruction_parameter": {
+      "key": [
+        "question"
+      ],
+      "template": "Question:{}\nAnswer:"
+    },
+    "demon_parameter": {
+      "key": [
+        "question",
+        "answer"
+      ],
+      "template": "Question:{}\nAnswer:{}\n"
+    }
+  },
+  "run_parameter": {
+    "max_new_tokens": 10
+  },
+  "result_process_parameter": {
+    "early_stop_string_list": [
+      "\n"
+    ],
+    "split_key_before": [
+      "\nAnswer:"
+    ],
+    "split_key_behind": [
+      "\n",
+      "</s>",
+      "<unk>",
+      "\nQuestion:"
+    ]
+  }
+}

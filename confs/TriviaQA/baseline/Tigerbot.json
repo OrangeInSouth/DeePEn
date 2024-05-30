@@ -1,0 +1,49 @@
+{
+  "model_path": {
+    "main_model_path": "/data/username/ModelsHub/TigerResearch/tigerbot-13b-base-v2"
+  },
+  "probability_transfer_matrix_path": {
+    "main_model_path": "/home/username/Experiments/LLM_ensemble/probability_transfer_matrix/Mistral-7B-v0.1-LLaMA-2-13B/LLaMA-2-13B-Base.pth",
+    "assist_model1_path": "/home/username/Experiments/LLM_ensemble/probability_transfer_matrix/Mistral-7B-v0.1-LLaMA-2-13B/Mistral-7B-v0.1.pth"
+  },
+  "file_path": {
+    "dev_file_path": "/data/home/username/Experiments/LLM_ensemble/Datasets/TriviaQA/wikipedia-dev-1900.jsonl",
+    "test_file_path": "/data/home/username/Experiments/LLM_ensemble/Datasets/TriviaQA/wikipedia-test-6000.jsonl",
+    "demon_file_path": "/data/home/username/Experiments/LLM_ensemble/Datasets/TriviaQA/wikipedia-demon-all_sample5_seed42.jsonl"
+  },
+  "prompt_template": {
+    "main_model_system_template": "<s>{}",
+    "assist_model_system_template": "<s>{}",
+    "instruction": "Answer this questions:\n",
+    "instruction_parameter": {
+      "key": [
+        "question"
+      ],
+      "template": "Question:{}\nAnswer:"
+    },
+    "demon_parameter": {
+      "key": [
+        "question",
+        "answer"
+      ],
+      "template": "Question:{}\nAnswer:{}\n"
+    }
+  },
+  "run_parameter": {
+    "max_new_tokens": 10
+  },
+  "result_process_parameter": {
+    "early_stop_string_list": [
+      "\nQuestion:"
+    ],
+    "split_key_before": [
+      "\nAnswer:"
+    ],
+    "split_key_behind": [
+      "\n",
+      "</s>",
+      "<unk>",
+      "\nQuestion:"
+    ]
+  }
+}

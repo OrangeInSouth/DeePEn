@@ -1,0 +1,57 @@
+{
+  "model_path": {
+    "main_model_path": "/data/username/ModelsHub/TigerResearch/tigerbot-13b-base-v2"
+  },
+  "probability_transfer_matrix_path": {
+    "main_model_path": "/home/username/Experiments/LLM_ensemble/probability_transfer_matrix/Mistral-7B-v0.1-LLaMA-2-13B/LLaMA-2-13B-Base.pth",
+    "assist_model1_path": "/home/username/Experiments/LLM_ensemble/probability_transfer_matrix/Mistral-7B-v0.1-LLaMA-2-13B/Mistral-7B-v0.1.pth"
+  },
+  "file_path": {
+    "dev_file_path": "/data/home/username/Experiments/LLM_ensemble/Datasets/ARC-Challenge/train.jsonl",
+    "test_file_path": "/data/home/username/Experiments/LLM_ensemble/Datasets/ARC-Challenge/test.jsonl",
+    "demon_file_path": ""
+  },
+  "prompt_template": {
+    "main_model_system_template": "<s>{}",
+    "assist_model1_system_template": "<s>{}",
+    "instruction": "",
+    "instruction_parameter": {
+      "key": [
+        "question",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "template": "Question: {}\nA. {}\nB. {}\nC. {}\nD. {}\nAnswer:"
+    },
+    "demon_parameter": {
+      "key": [
+        "question",
+        "A",
+        "B",
+        "C",
+        "D",
+        "answer"
+      ],
+      "template": "Answer the question by replying A, B, C or D.\nQuestion: {}\nA. {}\nB. {}\nC. {}\nD. {}\nAnswer: {}\n"
+    }
+  },
+  "run_parameter": {
+    "max_new_tokens": 1
+  },
+  "result_process_parameter": {
+    "early_stop_string_list": [
+      "\n"
+    ],
+    "split_key_before": [
+      "\nAnswer: "
+    ],
+    "split_key_behind": [
+      "\n",
+      "</s>",
+      "<unk>"
+    ]
+  }
+}
+
