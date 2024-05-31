@@ -2,7 +2,7 @@
 # DeePEn (Ensemble Learning for Heterogeneous Large Language Models with Deep Parallel Collaboration)
 Source code for paper [Ensemble Learning for Heterogeneous Large Language Models with Deep Parallel Collaboration](https://arxiv.org/html/2404.12715v1).
 
-In this paper, we propose a method **DeePEn** to fuse the probability distributions ouput by heterogeneous LLMs, which have different vocabularies (e.g., LLaMA and Mistral). At each decoding step, DeePEn determines the next token according to the fused distribution, improving the performance across all experimental benchmarks (MMLU, ARC-C, GSM8K, PIQA, TriviaQA, and NQ).
+In this paper, we propose a training-free method **DeePEn** to fuse the probability distributions ouput by heterogeneous LLMs, which have different vocabularies (e.g., LLaMA and Mistral). At each decoding step, DeePEn determines the next token according to the fused distribution, improving the performance across all experimental benchmarks (MMLU, ARC-C, GSM8K, PIQA, TriviaQA, and NQ).
 
 We exemplify the usage of our code with the ensemble learning of LLaMA2-13B, Mistral-7B, InternLM-20B, and TigerBot-13B on the NQ dataset.
 
@@ -54,7 +54,7 @@ Where:
 - `-lpm`: Model ensemble strategy, detailed in `src/logits_processor/model_processor_factory.py`
 - `-rsd`: Result storage path
 - `-rm`: Running mode, either `dev` or `test`
-- `-lr`: Learning rate
+- `-lr`: Ensemble learning rate
 
 ### Step-4: Evaluation
 
