@@ -16,12 +16,12 @@ class ProbabilityTransferMatrix():
                                               temperature=100,
                                               device="cuda:0"):
         model_relative_representation_matrix = self.get_relative_representation_matrix_by_cosine_similarity_normalization(
-            model, anchor_point_list, device_compute, device_compute)
+            model, anchor_point_list, device_compute, device)
 
         model_probability_transfer_matrix = self.get_probability_transfer_matrix(model_relative_representation_matrix,
                                                                                  temperature)
 
-        return model_probability_transfer_matrix.to(device)
+        return model_probability_transfer_matrix
 
     def block_cosine_similarity(self, tensor1, tensor2, block_size=1000):
         with torch.no_grad():
@@ -41,7 +41,6 @@ class ProbabilityTransferMatrix():
 
     def get_relative_representation_matrix_by_cosine_similarity_normalization(self, model, anchor_point_list_index,
                                                                               device_compute, device):
-        # 返回相对表示矩阵
 
         model_anchor_point_index_list = anchor_point_list_index
 
@@ -51,39 +50,37 @@ class ProbabilityTransferMatrix():
 
         block_size = 1000
 
-        # pdb.set_trace()
-
         model_relative_representation_matrix = self.block_cosine_similarity(
             model_embedding_tensor,
             model_anchor_point_embedding_tensor,
             block_size
         )
 
-        # pdb.set_trace()
-        # torch.cuda.empty_cache()
-        # pdb.set_trace()
-
         model_relative_representation_matrix = torch.nn.functional.normalize(
             model_relative_representation_matrix, p=2, dim=-1).to(device)
-
-        # pdb.set_trace()
-        # torch.cuda.empty_cache()
-        # pdb.set_trace()
 
         return model_relative_representation_matrix
 
     def get_probability_transfer_matrix(self, model_relative_representation_matrix, temperature):
-        # pdb.set_trace()
-        torch.cuda.empty_cache()
-        # pdb.set_trace()
 
-        probability_transfer_matrix = torch.nn.functional.softmax(
-            model_relative_representation_matrix * temperature, dim=-1)
-
-        # pdb.set_trace()
         torch.cuda.empty_cache()
-        # pdb.set_trace()
-        # 返回概率转移矩阵
+        # probability_transfer_matrix = torch.nn.functional.softmax(
+        #     model_relative_representation_matrix * temperature, dim=-1)
+        probability_transfer_matrix = self.softmax_by_chunk(model_relative_representation_matrix, temperature, 10000)
+        torch.cuda.empty_cache()
+
+        return probability_transfer_matrix
+
+    def softmax_by_chunk(self, model_relative_representation_matrix, temperature, chunk_size=2048, device="cpu"):
+        num_rows, num_cols = model_relative_representation_matrix.shape
+        probability_transfer_matrix = torch.empty_like(model_relative_representation_matrix, device=device)
+
+        for start in range(0, num_rows, chunk_size):
+            end = min(start + chunk_size, num_rows)
+            chunk = model_relative_representation_matrix[start:end]
+            chunk_softmax = torch.nn.functional.softmax(chunk * temperature, dim=-1)
+            probability_transfer_matrix[start:end] = chunk_softmax
+
         return probability_transfer_matrix
 
     def get_blocked_probability_transfer_matrix(self, model_relative_representation_matrix, temperature, block_size=16):

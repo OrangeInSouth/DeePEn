@@ -4,6 +4,8 @@ import sys
 
 import torch
 
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+# print(sys.path)
 from src.model_load import load_tokenizer, load_model_only
 from src.transfer_matrix.common_vocabulary import CommonVocabulary
 from src.transfer_matrix.transfer_matrix import ProbabilityTransferMatrix
