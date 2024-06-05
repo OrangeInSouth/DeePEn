@@ -1,4 +1,5 @@
 import json
+import pdb
 
 
 class CommonVocabulary:
@@ -52,8 +53,11 @@ class CommonVocabulary:
 
     def get_vocabulary_by_tokenizer(self, tokenizer):
         vocab_dict = tokenizer.get_vocab()
-        # print(len(vocab_dict.items))
-        return vocab_dict
+        modified_dict = {}
+        for key in vocab_dict:
+            new_key = key.replace("Ġ", "▁")
+            modified_dict[new_key] = vocab_dict[key]
+        return modified_dict
 
     def get_vocabulary_by_vocab_file(self, vocab_file_path):
         with open(vocab_file_path, 'r', encoding='utf-8') as main_vocab_file:
