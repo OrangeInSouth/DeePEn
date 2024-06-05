@@ -14,14 +14,13 @@ def result_write(result_path, sys_file_name, num_correct, num_total, accuracy):
     with open(os.path.join(result_path, 'EM_accuracy_all.jsonl'), 'a+', encoding='utf-8') as result_file:
         dict = {}
 
-        match = re.search(r'lr(.*?)anchor_point_count(.*?)learning_epochs_nums(.*)', sys_file_name)
-        lr, anchor_point_count, learning_epochs_nums = match.groups()
+        match = re.search(r'lr(.*?)learning_epochs_nums(.*)', sys_file_name)
+        lr, learning_epochs_nums = match.groups()
         dict['learning_rate'] = lr.strip('_')
         dict['accuracy'] = '{:.2f}'.format(accuracy * 100)
         dict['num_total'] = num_total
         dict['num_correct'] = num_correct
         dict['sys_file_path'] = os.path.join(result_path, sys_file_name)
-        dict['anchor_point_count'] = anchor_point_count.strip('_')
         dict['learning_epochs_nums'] = learning_epochs_nums.strip('.jsonl')
 
         result_file.write(json.dumps(dict, ensure_ascii=False) + '\n')
