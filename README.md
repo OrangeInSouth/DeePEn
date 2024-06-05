@@ -1,6 +1,6 @@
 
 # DeePEn (Ensemble Learning for Heterogeneous Large Language Models with Deep Parallel Collaboration)
-Source code for paper [Ensemble Learning for Heterogeneous Large Language Models with Deep Parallel Collaboration](https://arxiv.org/html/2404.12715v1).
+Source code for paper [Ensemble Learning for Heterogeneous Large Language Models with Deep Parallel Collaboration](https://arxiv.org/html/2404.12715).
 
 In this paper, we propose a training-free method **DeePEn** to fuse the probability distributions ouput by heterogeneous LLMs, which have different vocabularies (e.g., LLaMA and Mistral). At each decoding step, DeePEn determines the next token according to the fused distribution, improving the performance across all experimental benchmarks (MMLU, ARC-C, GSM8K, PIQA, TriviaQA, and NQ).
 
@@ -46,15 +46,16 @@ python src/main_many_ensemble_llama_series_local_matrix.py \
   -lpm based_on_probility_transfer_logits_fp32_processor \
   -d0 cuda:0 -d1 cuda:0 -d2 cuda:0 -d3 cuda:1 -dp cuda:1  \
   -rsd ${res_path} \
-  -rm test -lr 0.15
+  -rm test -lr 0.15 -ew 0.25 0.25 0.25 0.25
 ```
 
 Where:
 
 - `-lpm`: Model ensemble strategy, detailed in `src/logits_processor/model_processor_factory.py`
-- `-rsd`: Result storage path
-- `-rm`: Running mode, either `dev` or `test`
-- `-lr`: Ensemble learning rate
+- `-rsd`: Result storage path, default to `./`
+- `-rm`: Running mode, either `dev` or `test`, default to `dev`
+- `-lr`: Ensemble learning rate, default to `0`
+- `-ew`: Ensemble model weight, default to average
 
 ### Step-4: Evaluation
 
@@ -70,14 +71,9 @@ Result:
 Accuracy: 31.55 (1139/3610)
 ```
 
-
-
 ## Requirements
-
 - torch==2.1.2
-- transformers==transformers
-
-
+- transformers==4.40.0
 
 ## Citation
 
@@ -91,4 +87,3 @@ Accuracy: 31.55 (1139/3610)
       primaryClass={cs.CL}
 }
 ```
-
