@@ -5,6 +5,15 @@ Source code for paper [Ensemble Learning for Heterogeneous Large Language Models
 ![](./figures/Method.jpg "DeePEn")
 
 In this paper, we propose a *training-free* method **DeePEn** to fuse the probability distributions ouput by heterogeneous LLMs, which have different vocabularies (e.g., LLaMA and Mistral). At each decoding step, DeePEn determines the next token according to the fused distribution, improving the performance across all experimental benchmarks (MMLU, ARC-C, GSM8K, PIQA, TriviaQA, and NQ).
+![](./figures/performance.png "performance")
+![](./figures/Main_Experiment.jpeg "performance")
+
+Ensemble learning between Mixtral-8x7b and LLaMA2-70B:
+![](./figures/Ensemble_Dense_and_Sparse.png "performance")
+
+Ensemble learning between LLM and multilingual translator NLLB:
+![](./figures/Ensemble_LLM_and_Expert.png "performance")
+
 
 We exemplify the usage of our code with the ensemble learning of LLaMA2-13B, Mistral-7B, InternLM-20B, and TigerBot-13B on the NQ dataset.
 
