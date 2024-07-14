@@ -1,6 +1,6 @@
 
 # DeePEn (Ensemble Learning for Heterogeneous Large Language Models with Deep Parallel Collaboration)
-<img src="./figures/overview.png" style="zoom:80%;" />
+<img src="figures/overview.png" style="zoom:80%;" />
 
 Source code for paper [Ensemble Learning for Heterogeneous Large Language Models with Deep Parallel Collaboration](https://arxiv.org/html/2404.12715).
 
@@ -11,10 +11,10 @@ In this paper, we propose a *training-free* method **DeePEn** to fuse the probab
 ![](./figures/Main_Experiment.jpeg "performance")
 
 Ensemble learning between Mixtral-8x7b and LLaMA2-70B:
-<img src="./figures/Ensemble_Dense_and_Sparse.pn" style="zoom:50%;" />
+<img src="figures/Ensemble_Dense_and_Sparse.pn" style="zoom:50%;" />
 
 Ensemble learning between LLM and multilingual translator NLLB:
-<img src="./figures/Ensemble_LLM_and_Expert.png" style="zoom:50%;" />
+<img src="figures/Ensemble_LLM_and_Expert.png" style="zoom:50%;" />
 
 
 We exemplify the usage of our code with the ensemble learning of LLaMA2-13B, Mistral-7B, InternLM-20B, and TigerBot-13B on the NQ dataset.
