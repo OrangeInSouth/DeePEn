@@ -11,10 +11,10 @@ In this paper, we propose a *training-free* method **DeePEn** to fuse the probab
 ![](./figures/Main_Experiment.jpeg "performance")
 
 Ensemble learning between Mixtral-8x7b and LLaMA2-70B:
-![](./figures/Ensemble_Dense_and_Sparse.png "performance")
+<img src="./figures/Ensemble_Dense_and_Sparse.pn" style="zoom:50%;" />
 
 Ensemble learning between LLM and multilingual translator NLLB:
-![](./figures/Ensemble_LLM_and_Expert.png "performance")
+<img src="./figures/Ensemble_LLM_and_Expert.png" style="zoom:50%;" />
 
 
 We exemplify the usage of our code with the ensemble learning of LLaMA2-13B, Mistral-7B, InternLM-20B, and TigerBot-13B on the NQ dataset.
