@@ -1,6 +1,6 @@
 
 # DeePEn (Ensemble Learning for Heterogeneous Large Language Models with Deep Parallel Collaboration)
-<img src="figures/overview.png" width="210px" />
+<img src="figures/overview.png" width="80%" />
 
 Source code for paper [Ensemble Learning for Heterogeneous Large Language Models with Deep Parallel Collaboration](https://arxiv.org/html/2404.12715).
 
