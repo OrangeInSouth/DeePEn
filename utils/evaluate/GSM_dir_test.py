@@ -49,7 +49,7 @@ def find_files_with_suffix(folder_path, suffix):
 
 result_file_dir = sys.argv[1]
 
-jsonl_files_list = find_files_with_suffix(result_file_dir, ".jsonl")
+jsonl_files_list = find_files_with_suffix(result_file_dir, "5.jsonl")
 # print(pdf_files)
 for jsonl_file in tqdm(jsonl_files_list):
 
