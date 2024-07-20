@@ -75,7 +75,7 @@ Where:
 To perform testing, use the following command:
 
 ```bash
-python utils/evaluate/NQ_dir_test.py eval/TriviaQA_old_version_0506/LLaMA+Mistral+InternLM+Tigerbot/reweight/test
+python utils/evaluate/NQ_dir_test.py eval/TriviaQA/LLaMA+Mistral+InternLM+Tigerbot/reweight/test
 ```
 
 
