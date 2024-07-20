@@ -256,7 +256,7 @@ def main():
 
                     for assist_model_thread in assist_model_thread_list:
                         assist_model_thread.join()
-
+                    main_model_thread.join()
                     if max_new_tokens != 1:
 
                         try:

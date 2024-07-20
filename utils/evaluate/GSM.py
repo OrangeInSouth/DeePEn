@@ -26,7 +26,7 @@ def is_correct(model_answer, answer):
 def result_write(result_path, sys_file_name, num_correct, num_total, accuracy):
     with open(os.path.join(result_path, 'EM_accuracy.jsonl'), 'a+', encoding='utf-8') as result_file:
         dict = {}
-        match = re.search(r'lr(.*?)anchor_point_count(.*?)learning_epochs_nums(.*)', sys_file_name)
+        match = re.search(r'lr(.*?)learning_epochs_nums(.*)', sys_file_name)
         lr, anchor_point_count, learning_epochs_nums = match.groups()
         dict['learning_rate'] = lr.strip('_')
         dict['accuracy'] = '{:.2f}'.format(accuracy)
@@ -35,7 +35,6 @@ def result_write(result_path, sys_file_name, num_correct, num_total, accuracy):
         dict['sys_file_path'] = os.path.join(result_path, sys_file_name)
 
         dict['learning_epochs_nums'] = learning_epochs_nums.strip('.jsonl')
-        dict['anchor_point_count'] = anchor_point_count.strip('_')
 
         result_file.write(json.dumps(dict, ensure_ascii=False) + '\n')
 
