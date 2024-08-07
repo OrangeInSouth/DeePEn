@@ -237,7 +237,6 @@ def main():
 
                 for assist_model_thread in assist_model_thread_list:
                     assist_model_thread.join()
-                main_model_thread.join()
 
                 if max_new_tokens != 1:
 
@@ -266,6 +265,8 @@ def main():
 
                     for index in range(len(assist_model_input_list)):
                         assist_model_input_list[index] += "{}".format(new_token)
+            main_model_thread.join()
+
 
     time_elapsed = time.time() - start_time  # 获得时间差
     minutes = int(time_elapsed / 60)
